@@ -71,7 +71,6 @@ function getNextBookId(bookId) {
 function _createBooks() {
     let books = utilService.loadFromStorage(BOOK_KEY)
     if (!books || !books.length) {
-        // books = []
         books = [
             {
                 "id": "OXeMG8wNskc",
