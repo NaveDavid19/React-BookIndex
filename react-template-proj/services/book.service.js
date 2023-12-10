@@ -26,7 +26,10 @@ function query(filterBy) {
             if (filterBy.price) {
                 books = books.filter(book => book.listPrice.amount >= filterBy.price)
             }
-            console.log(books);
+            if (filterBy.publishedDate) {
+                books = books.filter(book => book.publishedDate >= filterBy.publishedDate)
+            }
+
             return books
         })
 }
@@ -58,10 +61,11 @@ function getFilterBy() {
 function setFilterBy(filterBy = {}) {
     if (filterBy.txt !== undefined) filterBy.txt = filterBy.txt
     if (filterBy.price !== undefined) filterBy.price = filterBy.price
+    if (filterBy.publishedDate !== undefined) filterBy.publishedDate = filterBy.publishedDate
     return filterBy
 }
 function getDefaultFilter() {
-    return { txt: '', price: '' }
+    return { txt: '', price: '', publishedDate: '' }
 }
 
 function getNextBookId(bookId) {

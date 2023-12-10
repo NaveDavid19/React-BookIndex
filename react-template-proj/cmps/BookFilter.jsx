@@ -15,7 +15,6 @@ export function BookFilter({ filterBy, onSetFilter }) {
     }
 
     function handleChange({ target }) {
-        console.log(target.value);
         const field = target.name
         let value = target.value
 
@@ -36,18 +35,20 @@ export function BookFilter({ filterBy, onSetFilter }) {
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
-    const { txt, price } = filterByToEdit
+    const { txt, price, publishedDate } = filterByToEdit
     return (
         <section className="car-filter">
             <h2>Filter Our Cars</h2>
             <form onSubmit={onSetFilterBy} >
-                <label htmlFor="txt">Book: </label>
+                <label htmlFor="txt">Book title: </label>
                 <input value={txt} onChange={handleChange} type="text" id="txt" name="txt" />
 
-                <label htmlFor="price">price: </label>
+                <label htmlFor="price">Min price: </label>
                 <input value={price || ''} onChange={handleChange} type="number" id="price" name="price" />
 
-                <button>Submit</button>
+                <label htmlFor="publishedDate">Min published date: </label>
+                <input value={publishedDate || ''} onChange={handleChange} type="number" id="publishedDate" name="publishedDate" />
+                <button>Filter</button>
             </form>
         </section>
     )
