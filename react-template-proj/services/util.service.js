@@ -6,7 +6,8 @@ export const utilService = {
     saveToStorage,
     padNum,
     getDayName,
-    getMonthName
+    getMonthName,
+    getCurrentYear
 }
 
 function makeId(length = 6) {
@@ -57,4 +58,9 @@ function getMonthName(date) {
         'July', 'August', 'September', 'October', 'November', 'December'
     ]
     return monthNames[date.getMonth()]
+}
+
+function getCurrentYear() {
+    const currentYear = new Date().getFullYear();
+    return currentYear;
 }

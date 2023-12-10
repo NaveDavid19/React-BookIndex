@@ -2,8 +2,7 @@
   box-sizing: border-box;
 }
 
-html {
-}
+html {}
 
 body {
   margin: 0;
@@ -27,6 +26,11 @@ p {
 a {
   text-decoration: none;
   color: unset;
+}
+
+.sale {
+  background-color: rgb(37, 204, 37);
+  width: 65px;
 }
 
 
