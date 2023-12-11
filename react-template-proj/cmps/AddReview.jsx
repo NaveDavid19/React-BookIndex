@@ -22,6 +22,7 @@ export function AddReview({ bookId }) {
     function onSetReview(ev) {
         ev.preventDefault()
         bookService.addReview(bookId, review)
+        showSuccessMsg('Review successfully Added!')
     }
 
     return (
