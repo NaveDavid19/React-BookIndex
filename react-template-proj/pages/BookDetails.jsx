@@ -1,4 +1,6 @@
+import { AddReview } from "../cmps/AddReview.jsx"
 import { LongText } from "../cmps/LongText.jsx"
+import { ReviewList } from "../cmps/ReviewList.jsx"
 import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
 
@@ -8,6 +10,8 @@ const { useParams, useNavigate, Link } = ReactRouterDOM
 
 export function BookDetails() {
     const [book, setBook] = useState(null)
+    const [openAddReview, setOpenAddReview] = useState(false)
+
     const params = useParams()
     const navigate = useNavigate()
 
@@ -32,6 +36,10 @@ export function BookDetails() {
         if (pageCount > 500) return pageCount += ' - Serious Reading'
         else if (pageCount > 200) return pageCount += ' - Descent Reading'
         else if (pageCount > 100) return pageCount += ' - Light Reading'
+    }
+
+    function hanldeOpenAddReview() {
+        setOpenAddReview(!openAddReview)
     }
 
     function getPublishedDate(publishedDate) {
@@ -62,9 +70,11 @@ export function BookDetails() {
             <h3>{getPublishedDate(book.publishedDate)}</h3>
             <h3 className="sale">{book.listPrice.isOnSale && 'On Sale'}</h3>
             <h4>Book Price : <span className={getPriceClass(book.listPrice.amount)}>{book.listPrice.amount}</span> {book.listPrice.currencyCode}</h4>
-            {<LongText txt={book.description} length={20} />}
-            <button><Link to={`/book/review/${book.id} `} >Add Review</Link></button>
+            <LongText txt={book.description} length={20} />
+            <button onClick={hanldeOpenAddReview}>Add Review</button>
+            {openAddReview && <AddReview bookId={params.bookId} />}
             <button onClick={onBack}>Back</button>
+            {book.reviews && <ReviewList reviews={book.reviews} />}
         </section>
     )
 }

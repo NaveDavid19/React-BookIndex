@@ -3,32 +3,27 @@ import { showSuccessMsg } from "../services/event-bus.service.js"
 
 
 const { useState } = React
-const { useNavigate, useParams } = ReactRouterDOM
+const { useNavigate } = ReactRouterDOM
 
-
-export function AddReview() {
-    const [bookToReview, setBookToReview] = useState(bookService.getEmptyReview())
-
+export function AddReview({ bookId }) {
     const navigate = useNavigate()
+    const [review, setReview] = useState(bookService.getEmptyReview())
 
 
+    const disableSave = !(review.fullName && review.rating && review.readAt)
 
     function handleChange({ target }) {
         const field = target.name
-        let value = target.value
-
-        target.type === 'number' ? +value : value
-
-        setBookToReview(prevReview => ({ ...prevReview, [field]: value }))
+        const value = target.value
+        setReview(prevReview => ({ ...prevReview, [field]: value }))
     }
+
 
     function onSetReview(ev) {
         ev.preventDefault()
-        console.log('hey');
-        navigate('/book')
+        bookService.addReview(bookId, review)
     }
 
-    const { fullName, rating, readAt } = bookToReview
     return (
         <section>
             <form onSubmit={onSetReview} >
@@ -40,7 +35,7 @@ export function AddReview() {
 
                 <label htmlFor="readAt">Read at: </label>
                 <input onChange={handleChange} type="date" id="readAt" name="readAt" />
-                <button disabled={!fullName || !rating || !readAt}>Save</button>
+                <button disabled={disableSave}> Save</button>
 
             </form>
         </section>

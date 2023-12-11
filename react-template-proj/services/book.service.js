@@ -14,7 +14,9 @@ export const bookService = {
     getFilterBy,
     setFilterBy,
     getDefaultFilter,
+    addReview,
     getEmptyReview
+
 }
 
 function query(filterBy) {
@@ -51,6 +53,22 @@ function save(book) {
     }
 }
 
+function addReview(bookId, review) {
+    get(bookId).then(book => {
+        book.reviews = book.reviews ? [...book.reviews, review] : [review]
+        save(book)
+    }).catch((err) => console.error(`Book with ID ${bookId} not found.`))
+}
+
+function getEmptyReview(fullName = '', rating = 1, readAt = '') {
+    return {
+        fullName,
+        rating,
+        readAt
+    }
+}
+
+
 function getEmptyBook(title = '', amount = '') {
     return {
         title,
@@ -59,14 +77,6 @@ function getEmptyBook(title = '', amount = '') {
             currency: 'USD',
             isOnSale: false,
         }
-    }
-}
-
-function getEmptyReview(fullName = '', rating = '', readAt = '') {
-    return {
-        fullName,
-        rating,
-        readAt
     }
 }
 
