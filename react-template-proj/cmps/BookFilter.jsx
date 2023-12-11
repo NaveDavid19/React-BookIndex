@@ -18,27 +18,15 @@ export function BookFilter({ filterBy, onSetFilter }) {
         const field = target.name
         let value = target.value
 
-        switch (target.type) {
-            case 'number':
-            case 'range':
-                value = +value
-                break;
-
-            case 'checkbox':
-                value = target.checked
-                break
-
-            default:
-                break;
-        }
+        target.type === 'number' ? +value : value
 
         setFilterByToEdit(prevFilter => ({ ...prevFilter, [field]: value }))
     }
 
     const { txt, price, publishedDate } = filterByToEdit
     return (
-        <section className="car-filter">
-            <h2>Filter Our Cars</h2>
+        <section className="book-filter">
+            <h2>Filter Our Books</h2>
             <form onSubmit={onSetFilterBy} >
                 <label htmlFor="txt">Book title: </label>
                 <input value={txt} onChange={handleChange} type="text" id="txt" name="txt" />

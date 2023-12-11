@@ -33,6 +33,15 @@ a {
   width: 65px;
 }
 
+.book-list {
+  display: flex;
+  background-color: #deb159;
+  justify-content: center;
+  /* padding: 10px; */
+  gap: 10px;
+  flex-wrap: wrap;
+
+}
 
 
 /* Dont stretch my Media */

@@ -4,6 +4,10 @@
   padding: 1em;
 }
 
+.app-nav a {
+  padding: 10px;
+}
+
 @media(max-width: 720px) {
   .app-header {
     color: var(--clr2bg);
