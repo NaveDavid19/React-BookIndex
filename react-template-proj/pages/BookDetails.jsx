@@ -3,7 +3,7 @@ import { bookService } from "../services/book.service.js"
 import { utilService } from "../services/util.service.js"
 
 const { useState, useEffect } = React
-const { useParams, useNavigate } = ReactRouterDOM
+const { useParams, useNavigate, Link } = ReactRouterDOM
 
 
 export function BookDetails() {
@@ -63,6 +63,7 @@ export function BookDetails() {
             <h3 className="sale">{book.listPrice.isOnSale && 'On Sale'}</h3>
             <h4>Book Price : <span className={getPriceClass(book.listPrice.amount)}>{book.listPrice.amount}</span> {book.listPrice.currencyCode}</h4>
             {<LongText txt={book.description} length={20} />}
+            <button><Link to={`/book/review/${book.id} `} >Add Review</Link></button>
             <button onClick={onBack}>Back</button>
         </section>
     )

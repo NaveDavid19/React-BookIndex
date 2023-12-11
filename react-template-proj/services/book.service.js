@@ -13,7 +13,8 @@ export const bookService = {
     getNextBookId,
     getFilterBy,
     setFilterBy,
-    getDefaultFilter
+    getDefaultFilter,
+    getEmptyReview
 }
 
 function query(filterBy) {
@@ -58,6 +59,14 @@ function getEmptyBook(title = '', amount = '') {
             currency: 'USD',
             isOnSale: false,
         }
+    }
+}
+
+function getEmptyReview(fullName = '', rating = '', readAt = '') {
+    return {
+        fullName,
+        rating,
+        readAt
     }
 }
 
