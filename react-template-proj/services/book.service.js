@@ -74,8 +74,6 @@ function getEmptyBook(title = '', amount = '') {
         title,
         listPrice: {
             amount,
-            currency: 'USD',
-            isOnSale: false,
         }
     }
 }

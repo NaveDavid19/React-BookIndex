@@ -45,8 +45,8 @@ export function BookDetails() {
     function getPublishedDate(publishedDate) {
         const currYear = utilService.getCurrentYear()
         const diff = currYear - publishedDate
-        if (diff > 10) return publishedDate += 'Vintage'
-        else if (diff < 1) return publishedDate += 'New'
+        if (diff > 10) return publishedDate += ' - Vintage'
+        else if (diff < 1) return publishedDate += ' - New'
     }
 
     function getPriceClass(price) {
