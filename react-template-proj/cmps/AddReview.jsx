@@ -3,10 +3,8 @@ import { showSuccessMsg } from "../services/event-bus.service.js"
 
 
 const { useState } = React
-const { useNavigate } = ReactRouterDOM
 
 export function AddReview({ bookId }) {
-    const navigate = useNavigate()
     const [review, setReview] = useState(bookService.getEmptyReview())
 
 
